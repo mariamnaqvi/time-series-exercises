@@ -28,12 +28,34 @@ def prep_store_items(df):
 
 def prep_energy_data(df):
     '''
-    
+    This function takes in a pandas dataframe and makes these changes
+    # change date to datetime
+    # set date as index and sort it
+    # add month and year columns
+    # fill missing values
     '''
+
     # convert Date to datetime object
     df.Date = pd.to_datetime(df.Date)
 
+    # set and sort the index
+    df = df.set_index('Date').sort_index()
+
+    # add month col to df
+    df['month'] = df.index.month
+
+    # add year col to df
+    df['year'] = df.index.year
+
+    # fill missing values with 0
+    df = df.fillna('0')
     
+    # return prepped df
+    return df
+
+
+
+
 
 
 
